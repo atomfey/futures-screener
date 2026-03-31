@@ -5,7 +5,7 @@
  * 個人使用，無需會員驗證。
  */
 
-const GITHUB_PAGES_BASE = 'https://raw.githubusercontent.com/atomtosov/futures-screener/main/docs';
+const GITHUB_PAGES_BASE = 'https://raw.githubusercontent.com/atomfey/futures-screener/main/docs';
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
