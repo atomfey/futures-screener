@@ -1,0 +1,509 @@
+/* ============================================================
+   期貨篩選器 - 暗色主題
+   ============================================================ */
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2128;
+  --bg-hover: #252c35;
+  --border: #30363d;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --accent-green: #3fb950;
+  --accent-red: #f85149;
+  --accent-orange: #d29922;
+  --accent-blue: #58a6ff;
+  --accent-purple: #bc8cff;
+  --accent-gold: #f0b429;
+  --signal-strong-long: #00e676;
+  --signal-long: #3fb950;
+  --signal-neutral: #8b949e;
+  --signal-short: #f85149;
+  --signal-strong-short: #ff1744;
+  --radius: 8px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+
+.header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+
+.header-info {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.header-info .badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px 12px;
+}
+
+/* ============================================================
+   Tab Navigation
+   ============================================================ */
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 10px 18px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.tab:hover { color: var(--text-primary); }
+
+.tab.active {
+  color: var(--accent-gold);
+  border-bottom-color: var(--accent-gold);
+}
+
+/* ============================================================
+   Main Content
+   ============================================================ */
+
+.main { padding: 16px 24px; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ============================================================
+   Card
+   ============================================================ */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   Stats Row
+   ============================================================ */
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.stat-value.positive { color: var(--accent-green); }
+.stat-value.negative { color: var(--accent-red); }
+.stat-value.warning { color: var(--accent-orange); }
+
+/* ============================================================
+   Table
+   ============================================================ */
+
+.table-container { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+th:hover { color: var(--text-primary); }
+
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+tr:hover { background: var(--bg-hover); }
+tr.selected { background: rgba(88, 166, 255, 0.1); }
+
+/* ============================================================
+   Signal Badges
+   ============================================================ */
+
+.signal {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.signal.strong-long { background: rgba(0, 230, 118, 0.15); color: var(--signal-strong-long); }
+.signal.long { background: rgba(63, 185, 80, 0.15); color: var(--signal-long); }
+.signal.neutral { background: rgba(139, 148, 158, 0.15); color: var(--signal-neutral); }
+.signal.short { background: rgba(248, 81, 73, 0.15); color: var(--signal-short); }
+.signal.strong-short { background: rgba(255, 23, 68, 0.15); color: var(--signal-strong-short); }
+
+/* ============================================================
+   Score Bar
+   ============================================================ */
+
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.score-bar-track {
+  width: 80px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.score-bar-fill.high { background: var(--accent-green); }
+.score-bar-fill.mid { background: var(--accent-orange); }
+.score-bar-fill.low { background: var(--accent-red); }
+
+/* ============================================================
+   Change Value
+   ============================================================ */
+
+.change.positive { color: var(--accent-green); }
+.change.negative { color: var(--accent-red); }
+
+/* ============================================================
+   TradingView Chart Container
+   ============================================================ */
+
+.chart-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chart-symbol {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+/* ============================================================
+   Rollover Calendar
+   ============================================================ */
+
+.rollover-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.rollover-item:last-child { border-bottom: none; }
+
+.rollover-urgent { border-left: 3px solid var(--accent-red); }
+.rollover-warning { border-left: 3px solid var(--accent-orange); }
+.rollover-ok { border-left: 3px solid var(--accent-green); }
+
+.days-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.days-badge.urgent { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+.days-badge.warning { background: rgba(210, 153, 34, 0.2); color: var(--accent-orange); }
+.days-badge.ok { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+
+/* ============================================================
+   Correlation Matrix (Heatmap)
+   ============================================================ */
+
+.heatmap-table td {
+  text-align: center;
+  width: 60px;
+  height: 40px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Position Calculator
+   ============================================================ */
+
+.calc-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calc-form label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.calc-form input,
+.calc-form select {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.calc-form input:focus,
+.calc-form select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.calc-result {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+/* ============================================================
+   Trade Journal
+   ============================================================ */
+
+.journal-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.journal-form input,
+.journal-form select {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover { background: var(--bg-hover); border-color: var(--text-secondary); }
+.btn-primary { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+.btn-primary:hover { opacity: 0.9; }
+.btn-danger { background: var(--accent-red); border-color: var(--accent-red); color: #fff; }
+
+/* ============================================================
+   Category Filter
+   ============================================================ */
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filter-btn {
+  padding: 5px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+.filter-btn.active { background: var(--accent-gold); border-color: var(--accent-gold); color: #000; }
+
+/* ============================================================
+   Condition Toggles
+   ============================================================ */
+
+.condition-toggles {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.condition-toggle {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.condition-toggle.pass { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); border-color: var(--accent-green); }
+.condition-toggle.fail { background: rgba(248, 81, 73, 0.1); color: var(--accent-red); border-color: transparent; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .header { flex-direction: column; gap: 8px; padding: 12px; }
+  .header h1 { font-size: 18px; }
+  .main { padding: 8px; }
+  .tabs { gap: 0; flex-wrap: wrap; }
+  .tab { font-size: 12px; padding: 8px 10px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .stat-card { padding: 10px 8px; }
+  .filter-btn { font-size: 11px; padding: 4px 8px; }
+
+  /* 表格橫向滾動 */
+  .results-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .results-table { min-width: 900px; font-size: 12px; }
+  .results-table th, .results-table td { padding: 6px 8px; }
+
+  /* 圖表面板 */
+  .chart-header { flex-direction: column; align-items: flex-start !important; }
+  #chart-symbol-select { width: 100%; }
+  #kline-chart { height: 300px !important; }
+
+  /* 換倉項目 */
+  .rollover-item { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* 相關性矩陣滾動 */
+  .heatmap-table { font-size: 11px; }
+  #correlation-matrix { overflow-x: auto; }
+
+  /* 交易日誌表格 */
+  #trades-body { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+  .header h1 { font-size: 16px; }
+  .tab { font-size: 11px; padding: 6px 8px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 18px; }
+  .stat-label { font-size: 10px; }
+  #kline-chart { height: 250px !important; }
+}

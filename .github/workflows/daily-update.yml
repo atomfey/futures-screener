@@ -1,0 +1,101 @@
+name: Daily Futures Screener
+
+on:
+  schedule:
+    # 台灣時間每天早上 5 點 (UTC 21:00 前一天)
+    # 週日到週四執行（對應美國期貨交易日）
+    - cron: "0 21 * * 0-4"
+  workflow_dispatch: # 手動觸發
+
+concurrency:
+  group: daily-futures
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      # Step 1: 執行期貨篩選
+      - name: Run futures screener
+        working-directory: backend
+        run: python screener.py
+
+      # Step 2: 季節性分析
+      - name: Run seasonality analysis
+        working-directory: backend
+        run: python seasonality.py
+
+      # Step 3: 經濟日曆
+      - name: Run economic calendar
+        working-directory: backend
+        run: python economic_calendar.py
+
+      # Step 4: 換倉檢查 + Telegram 通知
+      - name: Rollover check & Telegram notifications
+        working-directory: backend
+        run: |
+          python -c "
+          import json, sys
+          sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
+          from rollover import run_rollover_check, check_rollover_alerts
+          from telegram_bot import send_daily_summary, send_rollover_alerts
+
+          # 換倉檢查
+          result = run_rollover_check()
+
+          # 發送換倉提醒
+          alerts = result.get('alerts', [])
+          if alerts:
+              send_rollover_alerts(alerts)
+              print(f'Sent {len(alerts)} rollover alerts')
+
+          # 發送每日篩選摘要
+          with open('../docs/data/results.json', 'r', encoding='utf-8') as f:
+              results = json.load(f)
+          send_daily_summary(results)
+          print('Daily summary sent')
+          "
+
+      # Step 5: 驗證結果
+      - name: Verify results
+        run: |
+          python -c "
+          import json
+          with open('docs/data/results.json') as f:
+              data = json.load(f)
+          count = len(data.get('results', []))
+          print(f'Futures screened: {count}')
+          if count == 0:
+              print('WARNING: No futures data')
+          "
+
+      # Step 6: 提交並推送
+      - name: Commit & push results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/
+          git diff --cached --quiet || git commit -m "Daily futures screener update $(date -u +'%Y-%m-%d')"
+          git pull --rebase origin main
+          git push

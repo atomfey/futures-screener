@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASTC 期貨篩選器</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>ASTC 期貨篩選器</h1>
+    <div class="header-info">
+      <span class="badge" id="header-date">-</span>
+      <span class="badge" id="header-account">帳戶: $7,000</span>
+      <span class="badge" id="header-count">標的: -</span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" data-panel="screening">篩選結果</div>
+    <div class="tab" data-panel="chart">圖表分析</div>
+    <div class="tab" data-panel="rollover">換倉日曆</div>
+    <div class="tab" data-panel="risk">風險管理</div>
+    <div class="tab" data-panel="cot">COT + 季節性</div>
+    <div class="tab" data-panel="journal">交易日誌</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- ===================== Panel 1: 篩選結果 ===================== -->
+    <div class="panel active" id="panel-screening">
+      <!-- Stats -->
+      <div class="stats-row" id="signal-stats"></div>
+
+      <!-- Filters -->
+      <div class="filters" id="category-filters"></div>
+
+      <!-- Table -->
+      <div class="card">
+        <div class="table-container results-table-wrapper">
+          <table id="results-table" class="results-table">
+            <thead>
+              <tr>
+                <th data-sort="code">代碼</th>
+                <th data-sort="name">名稱</th>
+                <th data-sort="category">類別</th>
+                <th data-sort="signal">信號</th>
+                <th data-sort="long_score">做多分數</th>
+                <th data-sort="price">價格</th>
+                <th data-sort="change_1d">1日%</th>
+                <th data-sort="change_20d">20日%</th>
+                <th data-sort="change_60d">60日%</th>
+                <th data-sort="adx">ADX</th>
+                <th data-sort="rsi14">RSI</th>
+                <th data-sort="margin">保證金</th>
+                <th data-sort="days_to_rollover">換倉</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Condition Detail -->
+      <div class="card" id="condition-detail" style="display:none">
+        <div class="card-title" id="detail-title">-</div>
+        <div class="condition-toggles" id="detail-conditions"></div>
+        <div class="calc-result" id="detail-risk"></div>
+      </div>
+    </div>
+
+    <!-- ===================== Panel 2: 圖表分析 ===================== -->
+    <div class="panel" id="panel-chart">
+      <div class="chart-container">
+        <div class="chart-header" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <select id="chart-symbol-select" style="background:var(--bg-secondary);color:var(--accent-gold);border:1px solid var(--border);padding:6px 12px;border-radius:4px;font-size:14px;font-weight:600;min-width:200px;">
+          </select>
+          <span class="chart-symbol" id="chart-symbol" style="flex:1;"></span>
+          <select id="chart-timeframe" style="background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border);padding:4px 8px;border-radius:4px;">
+            <option value="D">日線</option>
+            <option value="W">週線</option>
+            <option value="M">月線</option>
+          </select>
+        </div>
+        <div id="tradingview-chart" style="height:500px;"></div>
+      </div>
+    </div>
+
+    <!-- ===================== Panel 3: 換倉日曆 ===================== -->
+    <div class="panel" id="panel-rollover">
+      <div class="stats-row" id="rollover-stats"></div>
+      <div class="card">
+        <div class="card-title">換倉時間表</div>
+        <div id="rollover-list"></div>
+      </div>
+    </div>
+
+    <!-- ===================== Panel 4: 風險管理 ===================== -->
+    <div class="panel" id="panel-risk">
+      <!-- Account Overview -->
+      <div class="stats-row" id="account-stats"></div>
+
+      <!-- Position Calculator -->
+      <div class="card">
+        <div class="card-title">倉位計算器</div>
+        <div class="calc-form">
+          <div>
+            <label>期貨品種</label>
+            <select id="calc-symbol"></select>
+          </div>
+          <div>
+            <label>帳戶資金 ($)</label>
+            <input type="number" id="calc-balance" value="7000">
+          </div>
+          <div>
+            <label>風險比例 (%)</label>
+            <input type="number" id="calc-risk" value="2" step="0.5">
+          </div>
+          <div>
+            <label>ATR 倍數</label>
+            <input type="number" id="calc-atr-mult" value="2" step="0.5">
+          </div>
+        </div>
+        <div class="calc-result" id="calc-output"></div>
+      </div>
+
+      <!-- Correlation Matrix -->
+      <div class="card">
+        <div class="card-title">相關性矩陣 (60日)</div>
+        <div class="table-container" id="correlation-matrix"></div>
+      </div>
+
+      <!-- Volatility Environment -->
+      <div class="card">
+        <div class="card-title">波動率環境</div>
+        <div class="table-container">
+          <table id="volatility-table">
+            <thead>
+              <tr>
+                <th>品種</th>
+                <th>ATR(14)</th>
+                <th>波動率百分位</th>
+                <th>環境</th>
+                <th>建議</th>
+              </tr>
+            </thead>
+            <tbody id="volatility-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Panel 5: COT + 季節性 ===================== -->
+    <div class="panel" id="panel-cot">
+      <!-- Economic Calendar -->
+      <div class="card">
+        <div class="card-title">經濟日曆 (未來 30 天)</div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>事件</th>
+                <th>時間</th>
+                <th>影響</th>
+                <th>受影響品種</th>
+                <th>剩餘</th>
+              </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Seasonality -->
+      <div class="card">
+        <div class="card-title">季節性分析 (歷史同月份統計)</div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>品種</th>
+                <th>本月平均漲跌</th>
+                <th>勝率</th>
+                <th>最佳</th>
+                <th>最差</th>
+                <th>季節性方向</th>
+              </tr>
+            </thead>
+            <tbody id="seasonality-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- COT -->
+      <div class="card">
+        <div class="card-title">COT 大戶持倉報告</div>
+        <p style="color:var(--text-secondary);padding:20px;text-align:center" id="cot-status">
+          COT 資料框架已建立（CFTC 每週二公布，待接入穩定資料源）
+        </p>
+      </div>
+    </div>
+
+    <!-- ===================== Panel 6: 交易日誌 ===================== -->
+    <div class="panel" id="panel-journal">
+      <!-- Journal Stats -->
+      <div class="stats-row" id="journal-stats"></div>
+
+      <!-- Add Trade -->
+      <div class="card">
+        <div class="card-title">新增交易記錄</div>
+        <div class="journal-form">
+          <div>
+            <label>品種</label>
+            <select id="trade-symbol"></select>
+          </div>
+          <div>
+            <label>方向</label>
+            <select id="trade-direction">
+              <option value="long">做多</option>
+              <option value="short">做空</option>
+            </select>
+          </div>
+          <div>
+            <label>口數</label>
+            <input type="number" id="trade-contracts" value="1" min="1">
+          </div>
+          <div>
+            <label>開倉價</label>
+            <input type="number" id="trade-entry" step="0.01">
+          </div>
+          <div>
+            <label>止損價</label>
+            <input type="number" id="trade-stop" step="0.01">
+          </div>
+          <div>
+            <label>開倉日期</label>
+            <input type="date" id="trade-date">
+          </div>
+          <div>
+            <label>平倉價 (選填)</label>
+            <input type="number" id="trade-exit" step="0.01">
+          </div>
+          <div>
+            <label>平倉日期 (選填)</label>
+            <input type="date" id="trade-exit-date">
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-add-trade">新增交易</button>
+      </div>
+
+      <!-- Trade History -->
+      <div class="card">
+        <div class="card-title">交易記錄</div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>品種</th>
+                <th>方向</th>
+                <th>口數</th>
+                <th>開倉</th>
+                <th>平倉</th>
+                <th>損益</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="trades-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
