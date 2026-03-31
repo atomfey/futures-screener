@@ -2,9 +2,9 @@ name: Daily Futures Screener
 
 on:
   schedule:
-    # 台灣時間每天早上 5 點 (UTC 21:00 前一天)
-    # 週日到週四執行（對應美國期貨交易日）
-    - cron: "0 21 * * 0-4"
+    # 台灣時間每天早上 9 點 (UTC 01:00)
+    # 週一到週五執行（對應美國期貨交易日）
+    - cron: "0 1 * * 1-5"
   workflow_dispatch: # 手動觸發
 
 concurrency:
