@@ -1,20 +1,6 @@
 {
-  "generated_at": "2026-03-31 06:57:53",
+  "generated_at": "2026-04-01 04:13:48",
   "events": [
-    {
-      "name": "EIA 原油庫存報告",
-      "name_en": "EIA Crude Oil Inventories",
-      "frequency": "weekly",
-      "schedule": "wednesday",
-      "time": "10:30 ET",
-      "impact": "high",
-      "affected": [
-        "MCL"
-      ],
-      "description": "美國原油庫存變化，直接影響油價",
-      "date": "2026-04-01",
-      "days_until": 1
-    },
     {
       "name": "非農就業報告 (NFP)",
       "name_en": "Non-Farm Payrolls",
@@ -34,7 +20,7 @@
       ],
       "description": "美國就業市場最重要的指標，影響所有市場",
       "date": "2026-04-03",
-      "days_until": 3
+      "days_until": 2
     },
     {
       "name": "EIA 原油庫存報告",
@@ -48,7 +34,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-08",
-      "days_until": 8
+      "days_until": 7
     },
     {
       "name": "消費者物價指數 (CPI)",
@@ -69,7 +55,7 @@
       ],
       "description": "通膨指標，直接影響 Fed 利率決策",
       "date": "2026-04-12",
-      "days_until": 12
+      "days_until": 11
     },
     {
       "name": "USDA 農作物供需報告",
@@ -85,7 +71,7 @@
       ],
       "description": "美國農業部月度供需報告，影響農產品價格",
       "date": "2026-04-12",
-      "days_until": 12
+      "days_until": 11
     },
     {
       "name": "生產者物價指數 (PPI)",
@@ -102,7 +88,7 @@
       ],
       "description": "批發端通膨指標",
       "date": "2026-04-12",
-      "days_until": 12
+      "days_until": 11
     },
     {
       "name": "零售銷售",
@@ -119,7 +105,7 @@
       ],
       "description": "消費者支出指標",
       "date": "2026-04-12",
-      "days_until": 12
+      "days_until": 11
     },
     {
       "name": "EIA 原油庫存報告",
@@ -133,7 +119,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-15",
-      "days_until": 15
+      "days_until": 14
     },
     {
       "name": "EIA 原油庫存報告",
@@ -147,7 +133,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-22",
-      "days_until": 22
+      "days_until": 21
     },
     {
       "name": "GDP 國內生產毛額",
@@ -165,7 +151,7 @@
       ],
       "description": "美國經濟成長率，每季公布",
       "date": "2026-04-25",
-      "days_until": 25
+      "days_until": 24
     },
     {
       "name": "EIA 原油庫存報告",
@@ -179,7 +165,28 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-29",
-      "days_until": 29
+      "days_until": 28
+    },
+    {
+      "name": "非農就業報告 (NFP)",
+      "name_en": "Non-Farm Payrolls",
+      "frequency": "monthly",
+      "schedule": "first_friday",
+      "time": "08:30 ET",
+      "impact": "high",
+      "affected": [
+        "MES",
+        "MNQ",
+        "MYM",
+        "M2K",
+        "MGC",
+        "ZN",
+        "6E",
+        "6J"
+      ],
+      "description": "美國就業市場最重要的指標，影響所有市場",
+      "date": "2026-05-01",
+      "days_until": 30
     }
   ],
   "all_events_definition": [
