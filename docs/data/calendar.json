@@ -1,27 +1,6 @@
 {
-  "generated_at": "2026-04-03 03:47:06",
+  "generated_at": "2026-04-06 04:09:12",
   "events": [
-    {
-      "name": "非農就業報告 (NFP)",
-      "name_en": "Non-Farm Payrolls",
-      "frequency": "monthly",
-      "schedule": "first_friday",
-      "time": "08:30 ET",
-      "impact": "high",
-      "affected": [
-        "MES",
-        "MNQ",
-        "MYM",
-        "M2K",
-        "MGC",
-        "ZN",
-        "6E",
-        "6J"
-      ],
-      "description": "美國就業市場最重要的指標，影響所有市場",
-      "date": "2026-04-03",
-      "days_until": 0
-    },
     {
       "name": "EIA 原油庫存報告",
       "name_en": "EIA Crude Oil Inventories",
@@ -34,7 +13,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-08",
-      "days_until": 5
+      "days_until": 2
     },
     {
       "name": "消費者物價指數 (CPI)",
@@ -55,7 +34,7 @@
       ],
       "description": "通膨指標，直接影響 Fed 利率決策",
       "date": "2026-04-12",
-      "days_until": 9
+      "days_until": 6
     },
     {
       "name": "USDA 農作物供需報告",
@@ -71,7 +50,7 @@
       ],
       "description": "美國農業部月度供需報告，影響農產品價格",
       "date": "2026-04-12",
-      "days_until": 9
+      "days_until": 6
     },
     {
       "name": "生產者物價指數 (PPI)",
@@ -88,7 +67,7 @@
       ],
       "description": "批發端通膨指標",
       "date": "2026-04-12",
-      "days_until": 9
+      "days_until": 6
     },
     {
       "name": "零售銷售",
@@ -105,7 +84,7 @@
       ],
       "description": "消費者支出指標",
       "date": "2026-04-12",
-      "days_until": 9
+      "days_until": 6
     },
     {
       "name": "EIA 原油庫存報告",
@@ -119,7 +98,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-15",
-      "days_until": 12
+      "days_until": 9
     },
     {
       "name": "EIA 原油庫存報告",
@@ -133,7 +112,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-22",
-      "days_until": 19
+      "days_until": 16
     },
     {
       "name": "GDP 國內生產毛額",
@@ -151,7 +130,7 @@
       ],
       "description": "美國經濟成長率，每季公布",
       "date": "2026-04-25",
-      "days_until": 22
+      "days_until": 19
     },
     {
       "name": "EIA 原油庫存報告",
@@ -165,7 +144,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-29",
-      "days_until": 26
+      "days_until": 23
     },
     {
       "name": "非農就業報告 (NFP)",
@@ -186,7 +165,42 @@
       ],
       "description": "美國就業市場最重要的指標，影響所有市場",
       "date": "2026-05-01",
-      "days_until": 28
+      "days_until": 25
+    },
+    {
+      "name": "聯準會利率決議 (FOMC)",
+      "name_en": "FOMC Rate Decision",
+      "frequency": "6weeks",
+      "schedule": "fomc",
+      "time": "14:00 ET",
+      "impact": "high",
+      "affected": [
+        "MES",
+        "MNQ",
+        "MYM",
+        "M2K",
+        "MGC",
+        "ZN",
+        "6E",
+        "6J"
+      ],
+      "description": "Fed 利率決策，影響所有金融市場",
+      "date": "2026-05-06",
+      "days_until": 30
+    },
+    {
+      "name": "EIA 原油庫存報告",
+      "name_en": "EIA Crude Oil Inventories",
+      "frequency": "weekly",
+      "schedule": "wednesday",
+      "time": "10:30 ET",
+      "impact": "high",
+      "affected": [
+        "MCL"
+      ],
+      "description": "美國原油庫存變化，直接影響油價",
+      "date": "2026-05-06",
+      "days_until": 30
     }
   ],
   "all_events_definition": [
