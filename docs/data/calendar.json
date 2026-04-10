@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09 03:49:28",
+  "generated_at": "2026-04-10 04:10:22",
   "events": [
     {
       "name": "消費者物價指數 (CPI)",
@@ -20,7 +20,7 @@
       ],
       "description": "通膨指標，直接影響 Fed 利率決策",
       "date": "2026-04-12",
-      "days_until": 3
+      "days_until": 2
     },
     {
       "name": "USDA 農作物供需報告",
@@ -36,7 +36,7 @@
       ],
       "description": "美國農業部月度供需報告，影響農產品價格",
       "date": "2026-04-12",
-      "days_until": 3
+      "days_until": 2
     },
     {
       "name": "生產者物價指數 (PPI)",
@@ -53,7 +53,7 @@
       ],
       "description": "批發端通膨指標",
       "date": "2026-04-12",
-      "days_until": 3
+      "days_until": 2
     },
     {
       "name": "零售銷售",
@@ -70,7 +70,7 @@
       ],
       "description": "消費者支出指標",
       "date": "2026-04-12",
-      "days_until": 3
+      "days_until": 2
     },
     {
       "name": "EIA 原油庫存報告",
@@ -84,7 +84,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-15",
-      "days_until": 6
+      "days_until": 5
     },
     {
       "name": "EIA 原油庫存報告",
@@ -98,7 +98,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-22",
-      "days_until": 13
+      "days_until": 12
     },
     {
       "name": "GDP 國內生產毛額",
@@ -116,7 +116,7 @@
       ],
       "description": "美國經濟成長率，每季公布",
       "date": "2026-04-25",
-      "days_until": 16
+      "days_until": 15
     },
     {
       "name": "EIA 原油庫存報告",
@@ -130,7 +130,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-04-29",
-      "days_until": 20
+      "days_until": 19
     },
     {
       "name": "非農就業報告 (NFP)",
@@ -151,7 +151,7 @@
       ],
       "description": "美國就業市場最重要的指標，影響所有市場",
       "date": "2026-05-01",
-      "days_until": 22
+      "days_until": 21
     },
     {
       "name": "聯準會利率決議 (FOMC)",
@@ -172,7 +172,7 @@
       ],
       "description": "Fed 利率決策，影響所有金融市場",
       "date": "2026-05-06",
-      "days_until": 27
+      "days_until": 26
     },
     {
       "name": "EIA 原油庫存報告",
@@ -186,7 +186,7 @@
       ],
       "description": "美國原油庫存變化，直接影響油價",
       "date": "2026-05-06",
-      "days_until": 27
+      "days_until": 26
     }
   ],
   "all_events_definition": [
