@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15 04:10:17",
+  "generated_at": "2026-04-16 04:16:32",
   "years_analyzed": 10,
   "data": {
     "MES": {
@@ -32,7 +32,7 @@
           "count": 5
         },
         "4": {
-          "avg_return": -1.31,
+          "avg_return": -1.19,
           "median_return": -1.17,
           "win_rate": 42.9,
           "best": 5.22,
@@ -135,7 +135,7 @@
           "count": 5
         },
         "4": {
-          "avg_return": -0.53,
+          "avg_return": -0.29,
           "median_return": 1.13,
           "win_rate": 71.4,
           "best": 6.32,
@@ -238,7 +238,7 @@
           "count": 5
         },
         "4": {
-          "avg_return": -2.01,
+          "avg_return": -2.03,
           "median_return": -3.52,
           "win_rate": 28.6,
           "best": 2.64,
@@ -341,10 +341,10 @@
           "count": 5
         },
         "4": {
-          "avg_return": -4.07,
+          "avg_return": -4.01,
           "median_return": -2.83,
           "win_rate": 28.6,
-          "best": 3.53,
+          "best": 3.9,
           "worst": -11.4,
           "count": 7
         },
@@ -445,7 +445,7 @@
         },
         "4": {
           "avg_return": 2.78,
-          "median_return": 2.83,
+          "median_return": 2.85,
           "win_rate": 77.8,
           "best": 8.14,
           "worst": -1.92,
@@ -547,7 +547,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": 2.74,
+          "avg_return": 2.9,
           "median_return": -0.57,
           "win_rate": 44.4,
           "best": 31.15,
@@ -650,7 +650,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": 1.66,
+          "avg_return": 1.67,
           "median_return": 0.14,
           "win_rate": 55.6,
           "best": 20.15,
@@ -753,10 +753,10 @@
           "count": 8
         },
         "4": {
-          "avg_return": 1.04,
+          "avg_return": 1.1,
           "median_return": -0.08,
           "win_rate": 44.4,
-          "best": 9.34,
+          "best": 9.63,
           "worst": -4.86,
           "count": 9
         },
@@ -856,7 +856,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": -0.07,
+          "avg_return": -0.09,
           "median_return": 0.24,
           "win_rate": 55.6,
           "best": 3.13,
@@ -959,7 +959,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": 0.47,
+          "avg_return": 0.5,
           "median_return": 0.04,
           "win_rate": 55.6,
           "best": 4.96,
@@ -1062,7 +1062,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": -0.97,
+          "avg_return": -0.95,
           "median_return": -0.55,
           "win_rate": 33.3,
           "best": 5.2,
