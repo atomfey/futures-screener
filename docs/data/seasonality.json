@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-20 04:21:55",
+  "generated_at": "2026-04-21 04:13:54",
   "years_analyzed": 10,
   "data": {
     "MES": {
@@ -32,7 +32,7 @@
           "count": 5
         },
         "4": {
-          "avg_return": -1.09,
+          "avg_return": -1.01,
           "median_return": -1.17,
           "win_rate": 42.9,
           "best": 5.22,
@@ -135,7 +135,7 @@
           "count": 5
         },
         "4": {
-          "avg_return": -0.16,
+          "avg_return": -0.09,
           "median_return": 1.13,
           "win_rate": 71.4,
           "best": 6.32,
@@ -238,7 +238,7 @@
           "count": 5
         },
         "4": {
-          "avg_return": -1.86,
+          "avg_return": -1.74,
           "median_return": -3.52,
           "win_rate": 42.9,
           "best": 2.64,
@@ -341,10 +341,10 @@
           "count": 5
         },
         "4": {
-          "avg_return": -3.83,
+          "avg_return": -3.57,
           "median_return": -2.83,
           "win_rate": 28.6,
-          "best": 5.2,
+          "best": 6.98,
           "worst": -11.4,
           "count": 7
         },
@@ -445,7 +445,7 @@
         },
         "4": {
           "avg_return": 2.7,
-          "median_return": 2.11,
+          "median_return": 2.17,
           "win_rate": 77.8,
           "best": 8.14,
           "worst": -1.92,
@@ -547,7 +547,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": 2.87,
+          "avg_return": 3.11,
           "median_return": -0.57,
           "win_rate": 44.4,
           "best": 31.15,
@@ -650,7 +650,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": 1.77,
+          "avg_return": 1.78,
           "median_return": 0.14,
           "win_rate": 55.6,
           "best": 20.15,
@@ -753,10 +753,10 @@
           "count": 8
         },
         "4": {
-          "avg_return": 1.26,
+          "avg_return": 1.28,
           "median_return": -0.08,
           "win_rate": 44.4,
-          "best": 11.06,
+          "best": 11.3,
           "worst": -4.86,
           "count": 9
         },
@@ -856,7 +856,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": -0.08,
+          "avg_return": -0.07,
           "median_return": 0.24,
           "win_rate": 55.6,
           "best": 3.13,
@@ -1062,7 +1062,7 @@
           "count": 8
         },
         "4": {
-          "avg_return": -0.94,
+          "avg_return": -0.97,
           "median_return": -0.55,
           "win_rate": 33.3,
           "best": 5.2,
